@@ -59,7 +59,7 @@
       }
     }
 
-    * { box-sizing: border-box; transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
@@ -86,12 +86,13 @@
       padding: 1.5rem 0;
       border-bottom: 1px solid var(--dusty-rose);
     }
-    .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.04em; text-decoration: none; }
+    .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 112%; letter-spacing: -0.04em; text-decoration: none; }
     .header-actions { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem); }
     .site-nav { display: flex; gap: clamp(1rem, 2.5vw, 2rem); font-size: .9rem; }
-    .site-nav a { text-decoration: none; color: var(--aubergine-soft); transition: color .18s ease; }
+    .site-nav a { text-decoration: none; color: var(--aubergine-soft); transition: color .18s ease, border-color .18s ease; }
+    .site-nav a[aria-current="page"] { color: var(--carmine-dark); border-bottom: 1px solid currentColor; }
     .site-nav a:hover { color: var(--carmine); }
-    .theme-toggle { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0; border: 1px solid var(--dusty-rose); border-radius: 50%; background: transparent; color: var(--aubergine); cursor: pointer; }
+    .theme-toggle { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0; border: 1px solid var(--dusty-rose); border-radius: 50%; background: transparent; color: var(--aubergine); cursor: pointer; transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease; }
     .theme-toggle:hover { border-color: var(--carmine); color: var(--carmine); }
     .theme-toggle:focus-visible { outline: 3px solid var(--carmine); outline-offset: 4px; }
     .theme-icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
@@ -101,19 +102,19 @@
     .theme-icon .moon-cutout { fill: var(--porcelain); stroke: none; }
 
     .hero {
-      min-height: min(690px, 78vh);
+      min-height: min(620px, 72vh);
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
       align-items: end;
       gap: 5rem;
-      padding: clamp(5rem, 12vw, 10rem) 0 clamp(5rem, 10vw, 8rem);
+      padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
       animation: hero-in .8s cubic-bezier(.2,.8,.2,1) both;
     }
     @keyframes hero-in {
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .hero-kicker, .section-kicker {
+    .section-kicker {
       margin: 0 0 1.5rem;
       color: var(--carmine-dark);
       font: 500 .75rem/1.4 'IBM Plex Mono', monospace;
@@ -137,7 +138,7 @@
     .text-link { color: var(--carmine-dark); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .25em; }
     .text-link:hover { color: var(--aubergine); }
 
-    section { padding: clamp(4.5rem, 9vw, 8rem) 0; border-top: 1px solid var(--dusty-rose); }
+    section { padding: clamp(3.5rem, 7vw, 6rem) 0; border-top: 1px solid var(--dusty-rose); }
     .section-heading { display: grid; grid-template-columns: minmax(180px, .6fr) minmax(0, 1.4fr); gap: 2rem; margin-bottom: 3rem; }
     .section-heading h2 { max-width: 12ch; margin: 0; font-size: clamp(2.2rem, 4vw, 4.5rem); line-height: .98; }
     .section-heading p { max-width: 38rem; margin: .15rem 0 0; color: var(--aubergine-soft); }
@@ -149,13 +150,20 @@
     .feature:first-child .feature-media img { object-position: center 37%; }
     .feature::after { content: ''; display: block; width: 2.5rem; height: 3px; margin-top: 1.5rem; background: var(--carmine); }
     .live-status { position: absolute; top: .9rem; left: .9rem; display: inline-flex; align-items: center; gap: .45rem; padding: .35rem .6rem; background: var(--live-surface); color: var(--white); font: 500 .7rem 'IBM Plex Mono', monospace; }
+    .feature:first-child .live-status { border-left: 2px solid var(--carmine); }
+    .feature:nth-child(2) .live-status { border-left: 2px solid var(--cyan); }
     .live-status::before { content: ''; width: .42rem; height: .42rem; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 0 var(--live-shadow); animation: live-pulse 2s ease-out infinite; }
     @keyframes live-pulse { 70% { box-shadow: 0 0 0 6px var(--live-shadow-clear); } 100% { box-shadow: 0 0 0 0 var(--live-shadow-clear); } }
     .feature h3 { margin: 0 0 .75rem; font-size: clamp(1.45rem, 2.5vw, 2rem); line-height: 1.05; }
     .feature p { max-width: 31rem; margin: 0 0 1rem; color: var(--aubergine-soft); }
+    .stack { display: flex; flex-wrap: wrap; align-items: baseline; gap: .45rem .7rem; margin: 0 0 1.25rem; color: var(--aubergine-soft); font: .78rem/1.5 'IBM Plex Mono', monospace; }
+    .stack-label { color: var(--carmine-dark); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0 0 1.25rem; color: var(--aubergine-soft); font: .75rem/1.5 'IBM Plex Mono', monospace; }
+    .project-meta strong { color: var(--aubergine); font-weight: 500; }
     .evidence { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: 1.25rem 0; }
     .evidence strong { color: var(--aubergine); font: 500 .9rem 'IBM Plex Mono', monospace; }
     .feature-links { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; font-size: .9rem; }
+    .feature-links a:first-child::after { content: ' ↗'; display: inline-block; margin-left: .15rem; }
 
     .evidence-list { border-top: 1px solid var(--dusty-rose); }
     .evidence-row { display: grid; grid-template-columns: minmax(200px, .7fr) minmax(0, 1.3fr); gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid var(--dusty-rose); }
@@ -234,7 +242,6 @@
     <main id="top">
       <section class="hero" aria-labelledby="intro-title">
         <div>
-          <p class="hero-kicker">machine learning systems / model evaluation</p>
           <h1 id="intro-title">Build it. Test it. Trust it.</h1>
           <p class="typewriter" aria-live="polite"><span class="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">▋</span></p>
         </div>
@@ -243,7 +250,7 @@
           <p>Data Science &amp; AI at IIT Madras and Computer Science Engineering at GNDEC. I take models from notebook to cloud, with particular attention to data quality, evaluation, and whether a result actually deserves to win.</p>
           <div class="hero-actions">
             <a class="button" href="#work">See live work</a>
-            <a class="text-link" href="mailto:prajapati.arya04@gmail.com">Email Aryan</a>
+            <a class="text-link" href="mailto:aryanpraja004@gmail.com">Email Aryan</a>
           </div>
         </div>
       </section>
@@ -260,11 +267,13 @@
         <div class="feature-grid">
           <article class="feature">
             <div class="feature-media">
-              <span class="live-status">live demo</span>
+              <span class="live-status">ranking system</span>
               <img src="SmartMCQSolver.png" alt="Smart MCQ Solver interface showing a RoBERTa Base model and question-entry workflow" loading="eager">
             </div>
             <h3>Smart MCQ Solver</h3>
             <p>A ranking system optimized for MAP@3, taken through six milestones from TF-IDF baselines to RAG and LoRA fine-tuning. The strongest model was a LoRA fine-tuned RoBERTa-base, deployed as a Streamlit app.</p>
+            <p class="stack" aria-label="Smart MCQ Solver technology stack"><span class="stack-label">stack</span><span>Python · PyTorch · Transformers · PEFT/LoRA · Streamlit</span></p>
+            <div class="project-meta" aria-label="Smart MCQ Solver project details"><span><strong>model</strong> RoBERTa-base</span><span><strong>metric</strong> MAP@3</span><span><strong>deploy</strong> Streamlit</span></div>
             <div class="evidence" aria-label="Smart MCQ Solver evidence">
               <strong>0.75311 MAP@3</strong>
               <strong>3.4 MB adapter</strong>
@@ -278,11 +287,13 @@
 
           <article class="feature">
             <div class="feature-media">
-              <span class="live-status">live demo</span>
+              <span class="live-status">sensor fusion</span>
               <img src="ins_gps.png" alt="INS and GPS Trajectory Fusion dashboard showing loaded models and trajectory comparison charts" loading="eager">
             </div>
             <h3>INS/GPS Trajectory Fusion</h3>
             <p>A full-stack system for predicting autonomous-vehicle trajectories from IMU and GPS input. Twelve architectures are served through FastAPI with CPU-optimized PyTorch weights, all under 6 MB.</p>
+            <p class="stack" aria-label="INS/GPS Trajectory Fusion technology stack"><span class="stack-label">stack</span><span>Python · PyTorch · FastAPI · NumPy · Pandas</span></p>
+            <div class="project-meta" aria-label="INS/GPS Trajectory Fusion project details"><span><strong>models</strong> 12 architectures</span><span><strong>metric</strong> displacement error</span><span><strong>deploy</strong> FastAPI</span></div>
             <div class="evidence" aria-label="INS/GPS Trajectory Fusion evidence">
               <strong>12 architectures</strong>
               <strong>11 evaluation metrics</strong>
@@ -300,21 +311,21 @@
           <article class="evidence-row">
             <div>
               <h3>Unified Intelligent System for Audio Inference</h3>
-              <span class="mono">ongoing / FastAPI + LangChain</span>
+              <span class="mono">stack / Python · FastAPI · LangChain · Whisper · YAMNet</span>
             </div>
             <p>A modular pipeline combining Whisper large-v3 for speech transcription and YAMNet across 521 AudioSet classes. Multi-stage filtering reduces 66 raw detections to 8–10 clean segments before LLM reasoning.</p>
           </article>
           <article class="evidence-row">
             <div>
               <h3>Multi-Crop Disease Detection System</h3>
-              <span class="mono">TensorFlow + Keras + EfficientNetB0</span>
+              <span class="mono">stack / Python · TensorFlow · Keras · EfficientNetB0</span>
             </div>
             <p>Classification across 8 crops grown in Northern India and 37 disease classes. Transfer learning with EfficientNetB0 reached 0.94 test accuracy, compared with a 0.54 F1 CNN-from-scratch baseline.</p>
           </article>
           <article class="evidence-row">
             <div>
               <h3>Sentiment Classification &amp; Error Analysis</h3>
-              <span class="mono">200K-row dataset / 0.89 F1</span>
+              <span class="mono">stack / Python · Scikit-learn · LightGBM · XGBoost</span>
             </div>
             <p>A reusable evaluation workflow using Logistic Regression, Scikit-learn, LightGBM, and XGBoost, with feature engineering and tuning improving F1 by 0.15 over baseline and tracing errors to labeling inconsistencies.</p>
           </article>
@@ -369,7 +380,7 @@
         <div class="skills-layout">
           <div>
             <p class="section-kicker">skills</p>
-            <h2 id="skills-title">A practical stack.</h2>
+            <h2 id="skills-title">Tools behind the work.</h2>
           </div>
           <div class="skill-grid">
             <div class="skill-group"><h3>Languages</h3><p>Python, SQL, C++</p></div>
@@ -388,7 +399,7 @@
         <div class="contact-copy">
           <p>Open to entry-level Machine Learning Engineer, Data Scientist, Data Engineer, and AI Engineer roles — remote or based in Bangalore, Gurgaon, or NCR.</p>
           <div class="contact-links">
-            <a class="button" href="mailto:aryanpraja004@gmail.com">prajapati.arya04@gmail.com</a>
+            <a class="button" href="mailto:aryanpraja004@gmail.com">aryanpraja004@gmail.com</a>
             <a class="text-link" href="tel:+917526011091">7526011091</a>
             <a class="text-link" href="https://www.linkedin.com/in/aryanprajapati-508535287" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a class="text-link" href="https://github.com/aryan-prajapati004" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -412,6 +423,8 @@
         'Building reliable systems'
       ];
       const storageKey = 'aryan-portfolio-theme';
+      const sections = [...document.querySelectorAll('main > section[id]')];
+      const navLinks = [...document.querySelectorAll('.site-nav a')];
       let phraseIndex = 0;
       let timer;
 
@@ -431,6 +444,18 @@
       const initialTheme = getStoredTheme() || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       setTheme(initialTheme);
       themeToggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+
+      const updateActiveSection = (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => {
+            link.toggleAttribute('aria-current', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        });
+      };
+
+      const sectionObserver = new IntersectionObserver(updateActiveSection, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+      sections.forEach((section) => sectionObserver.observe(section));
 
       const startTypewriter = () => {
         window.clearTimeout(timer);
