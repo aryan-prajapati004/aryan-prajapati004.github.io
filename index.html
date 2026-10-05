@@ -192,6 +192,12 @@
     .resume h2 { max-width: 12ch; margin: 0; font-size: clamp(2.2rem, 4vw, 4.5rem); line-height: .98; }
     .resume-copy { max-width: 42rem; }
     .resume-copy p { margin: 0 0 1.5rem; color: var(--aubergine-soft); font-size: 1.29rem; }
+    .resume-actions { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
+    .resume-preview { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; width: 100%; height: 100%; padding: clamp(1rem, 4vw, 4rem); border: 0; background: rgba(42, 20, 34, .82); }
+    .resume-preview[hidden] { display: none; }
+    .resume-preview-frame { width: min(100%, 1100px); height: 100%; border: 1px solid var(--dusty-rose); background: var(--white); box-shadow: 0 1rem 3rem rgba(0, 0, 0, .3); }
+    .resume-preview-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .resume-preview-exit { position: absolute; top: clamp(1rem, 3vw, 2rem); right: clamp(1rem, 3vw, 2rem); z-index: 1; }
 
     .contact { display: grid; grid-template-columns: minmax(180px, .6fr) minmax(0, 1.4fr); gap: 2rem; align-items: start; }
     .contact h2 { margin: 0; font-size: clamp(2.2rem, 4vw, 4.5rem); line-height: .98; }
@@ -206,6 +212,7 @@
       .section-heading, .skills-layout, .resume, .contact { grid-template-columns: 1fr; gap: 1rem; }
       .section-heading { margin-bottom: 2rem; }
       .section-heading h2, .skills-layout h2, .resume h2, .contact h2 { max-width: none; }
+      .resume-preview { grid-column: 1; }
       .feature-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .evidence-row, .role { grid-template-columns: 1fr; gap: .6rem; }
       .skill-grid { gap: 0 1rem; }
@@ -404,7 +411,17 @@
         </div>
         <div class="resume-copy">
           <p>Review my experience, education, projects, and technical skills in one place.</p>
-          <a class="button" href="myresume.pdf" download="Aryan-Prajapati-Resume.pdf">Download resume</a>
+          <div class="resume-actions">
+            <a class="button" href="myresume.pdf" download="Aryan-Prajapati-Resume.pdf">Download resume</a>
+            <button class="button" type="button" data-preview-toggle aria-controls="resume-preview" aria-expanded="false">Preview resume</button>
+          </div>
+        </div>
+        <div id="resume-preview" class="resume-preview" data-src="myresume.pdf#toolbar=1" role="dialog" aria-labelledby="resume-preview-title" aria-modal="true" hidden>
+          <div class="resume-preview-frame">
+            <h3 id="resume-preview-title" hidden>Resume preview</h3>
+            <iframe title="Resume preview"></iframe>
+          </div>
+          <button class="button resume-preview-exit" type="button" data-preview-exit>Exit preview</button>
         </div>
       </section>
 
@@ -432,6 +449,10 @@
       const themeToggle = document.querySelector('.theme-toggle');
       const typewriter = document.querySelector('.typewriter');
       const typewriterText = document.querySelector('.typewriter-text');
+      const previewToggle = document.querySelector('[data-preview-toggle]');
+      const resumePreview = document.querySelector('#resume-preview');
+      const previewFrame = resumePreview?.querySelector('iframe');
+      const previewExit = document.querySelector('[data-preview-exit]');
       const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const phrases = [
         'Moving models from notebook to cloud',
@@ -460,6 +481,31 @@
       const initialTheme = getStoredTheme() || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       setTheme(initialTheme);
       themeToggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+
+      if (previewToggle && resumePreview) {
+        const closePreview = () => {
+          resumePreview.setAttribute('hidden', '');
+          previewToggle.setAttribute('aria-expanded', 'false');
+          previewToggle.textContent = 'Preview resume';
+          document.body.style.overflow = '';
+        };
+
+        previewToggle.addEventListener('click', () => {
+          if (previewFrame && !previewFrame.getAttribute('src')) {
+            previewFrame.setAttribute('src', resumePreview.dataset.src);
+          }
+          resumePreview.removeAttribute('hidden');
+          previewToggle.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        });
+        previewExit?.addEventListener('click', closePreview);
+        resumePreview.addEventListener('click', (event) => {
+          if (event.target === resumePreview) closePreview();
+        });
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !resumePreview.hasAttribute('hidden')) closePreview();
+        });
+      }
 
       const updateActiveSection = (entries) => {
         entries.forEach((entry) => {
