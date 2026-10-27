@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404: Page Not Found — Aryan Prajapati</title>
+  <meta name="description" content="Page not found. Return to Aryan Prajapati's Machine Learning Engineer portfolio.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --porcelain: #fff6f3;
+      --porcelain-deep: #f9e5e5;
+      --aubergine: #2a1422;
+      --aubergine-soft: #5d4854;
+      --carmine: #d9363e;
+      --carmine-dark: #af2530;
+      --cyan: #00afc0;
+      --dusty-rose: #e8c9cf;
+      --white: #fffdfc;
+      --max-width: 1180px;
+      --gutter: clamp(1.25rem, 3vw, 3rem);
+    }
+
+    [data-theme="dark"] {
+      --porcelain: #171217;
+      --porcelain-deep: #241a23;
+      --aubergine: #f8eeea;
+      --aubergine-soft: #cebcc3;
+      --carmine: #ef4b55;
+      --carmine-dark: #ff7a80;
+      --cyan: #39d6dd;
+      --dusty-rose: #4c3440;
+      --white: #fffdfc;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --porcelain: #171217;
+        --porcelain-deep: #241a23;
+        --aubergine: #f8eeea;
+        --aubergine-soft: #cebcc3;
+        --carmine: #ef4b55;
+        --carmine-dark: #ff7a80;
+        --cyan: #39d6dd;
+        --dusty-rose: #4c3440;
+        --white: #fffdfc;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--porcelain);
+      color: var(--aubergine);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.12rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--carmine); outline-offset: 4px; }
+    ::selection { background: var(--carmine); color: var(--white); }
+
+    .site-shell {
+      width: min(var(--max-width), calc(100% - (var(--gutter) * 2)));
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--dusty-rose);
+    }
+
+    .wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+    }
+
+    .theme-toggle {
+      display: inline-grid;
+      place-items: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0;
+      border: 1px solid var(--dusty-rose);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--aubergine);
+      cursor: pointer;
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .theme-toggle:hover { border-color: var(--carmine); color: var(--carmine); }
+    .theme-icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+    .moon-icon { display: none; }
+    [data-theme="dark"] .sun-icon { display: none; }
+    [data-theme="dark"] .moon-icon { display: block; }
+
+    main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: clamp(3rem, 8vw, 6rem) 0;
+      text-align: center;
+    }
+
+    .content-box {
+      max-width: 34rem;
+      margin: 0 auto;
+      animation: page-in .6s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes page-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .kicker {
+      margin: 0 0 1rem;
+      color: var(--carmine-dark);
+      font: 500 .8rem/1.4 'IBM Plex Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: lowercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(5rem, 15vw, 9.5rem);
+      font-weight: 700;
+      line-height: .9;
+      letter-spacing: -.05em;
+      color: var(--carmine);
+    }
+
+    h2 {
+      margin: 1.25rem 0 .75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -.03em;
+    }
+
+    .description {
+      margin: 0 0 2.25rem;
+      color: var(--aubergine-soft);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .75rem 1rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding: .65rem 1.25rem;
+      border: 1px solid var(--carmine);
+      background: var(--carmine);
+      color: var(--white);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .18s ease, border-color .18s ease;
+    }
+    .button:hover {
+      background: var(--carmine-dark);
+      border-color: var(--carmine-dark);
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--aubergine);
+      border-color: var(--dusty-rose);
+    }
+    .button-outline:hover {
+      background: transparent;
+      color: var(--carmine);
+      border-color: var(--carmine);
+    }
+
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--dusty-rose);
+      color: var(--aubergine-soft);
+      font-size: .85rem;
+      text-align: center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .content-box { animation: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="wordmark" href="/">Aryan Prajapati</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" id="theme-toggle">
+        <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle class="sun-icon" cx="12" cy="12" r="4"></circle>
+          <path class="sun-icon" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          <path class="moon-icon" d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <main id="main-content">
+      <div class="content-box">
+        <p class="kicker">error 404</p>
+        <h1>404</h1>
+        <h2>Page not found</h2>
+        <p class="description">The page you were looking for doesn't exist, has been moved, or is temporarily unavailable.</p>
+        <div class="actions">
+          <a class="button" href="/" id="home-link">Back to homepage</a>
+          <a class="button button-outline" href="/#work" id="work-link">View selected work</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>Built and maintained by Aryan Prajapati.</footer>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('theme-toggle');
+      const storageKey = 'aryan-portfolio-theme';
+
+      const getStoredTheme = () => {
+        try { return localStorage.getItem(storageKey); } catch (e) { return null; }
+      };
+
+      const setTheme = (theme, persist = false) => {
+        root.dataset.theme = theme;
+        if (themeToggle) {
+          themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+          themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+        if (persist) {
+          try { localStorage.setItem(storageKey, theme); } catch (e) {}
+        }
+      };
+
+      const initialTheme = getStoredTheme() || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(initialTheme);
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+      }
+    })();
+  </script>
+</body>
+</html>
